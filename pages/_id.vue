@@ -1,19 +1,19 @@
 <template>
   <div class="container">
-    <h1>
-      Who do you want to find?
-    </h1>
-    <div class="text-box">
-        <input v-model="account" class="input" type="text" placeholder="GitHub Account">
-    </div>
-    <div class="field">
-      <p class="control">
-        <nuxt-link :to="`${account}`">
-          <button class="button">
-            Search!
-          </button>
-        </nuxt-link>
-      </p>
+    <div v-if="user">
+      <div class="profile-picture">
+      <figure class="is-horizontal-center image is-128x128">
+        <img class="round-border is-rounded" v-bind:src="user.avatar_url">
+      </figure>
+      </div>
+      <div>
+      <h2 class="title">
+        @{{user.login}}
+      </h2>
+      </div>
+      <div class="links">
+        
+      </div>
     </div>
   </div>
 </template>
@@ -22,15 +22,10 @@
   import axios from "axios"
 
   export default {
-    data() {
-      return {
-        account:'',
-      }
-    },
-    async asyncData() {
+    async asyncData({ params }) {
       try {
 
-      const data = await axios.get(`https://api.github.com/users/awl88`);
+      const data = await axios.get(`https://api.github.com/users/${params.id}`);
       return {user: data.data}
       } catch {
         console.log('User not found');
@@ -41,9 +36,9 @@
 
 <style>
 .container {
-  position: fixed;
-  top: 35%;
-  left: 45%;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -56,7 +51,7 @@
 }
 
 .round-border {
-  border: 5px solid #35495e;
+  border: 5px solid #2e83df;
 }
 
 .title {
@@ -74,9 +69,12 @@
   letter-spacing: 1px;
 }
 
-.text-box {
-  width: 200px;
-  padding: 5px;
+.subtitle {
+  font-weight: 300;
+  font-size: 42px;
+  color: #526488;
+  word-spacing: 5px;
+  padding-bottom: 15px;
 }
 
 .links {
