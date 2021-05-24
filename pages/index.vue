@@ -8,7 +8,7 @@
     </div>
     <div class="field">
       <p class="control">
-        <nuxt-link :to="`${account}`">
+        <nuxt-link :to="`user/${account}`">
           <button class="button">
             Search!
           </button>
@@ -18,7 +18,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
   import axios from "axios"
 
   export default {
@@ -40,15 +40,6 @@
 </script>
 
 <style>
-.container {
-  position: fixed;
-  top: 35%;
-  left: 45%;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
 .profile-picture {
     display: flex;
     justify-content: center;

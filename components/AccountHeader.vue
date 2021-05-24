@@ -22,13 +22,13 @@ import AccountInfo from '../components/AccountInfo.vue';
 
 export default {   
     name: 'AccountHeader',
-    props: ["account"],
+    props: ["account", "repos"],
     components: {AccountInfo},
 
 }
 </script>
 
-<style>
+<style scoped>
 .profile-picture {
     display: flex;
     justify-content: center;
